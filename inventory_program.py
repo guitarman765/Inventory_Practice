@@ -1,18 +1,8 @@
 # Inventory Tracker.
-# Inventory tracker, database will be a text file, security
-# concerns for text file, public inventory list instead of private.
-# Can also create an ini file for dictionary saving but I don't know how to do that yet so using text files for now.
 
-# import pickle
-
-
-# Load the dictionary back from the pickle file.
-# favorite_color = pickle.load( open( "save.p", "rb" ) )
-
-
-# The inventory stored as a dictionary.
+# Database of locations will disappear after each program run but will create database later.
+global inventory_dict
 inventory_dict = {}
-
 
 def user_choice():
     print("1: Find Location Of Item In Inventory")
@@ -50,9 +40,9 @@ def delete_item():
 
 # FIX ME
 def add_item():
-    add_item_num = input(print("Enter Item Number To Add To Inventory: "))
-    add_item_location = input(print("Enter Item Location Of Item Added To Inventory: "))
-    verify_input = input(print("Are You Sure You Want To Add Item:", add_item_num, "To Location:", add_item_location))
+    add_item_num = input("Enter Item Number To Add To Inventory: ")
+    add_item_location = input("Enter Item Location Of Item Added To Inventory: ")
+    verify_input = input("Are You Sure You Want To Add Item: {} To Location: {}. Y/N: ".format(add_item_num, add_item_location))
     if verify_input == "Y" or "y":
         inventory_dict.update({add_item_num: add_item_location})
     else:
@@ -60,7 +50,3 @@ def add_item():
 
 
 user_choice()
-
-# Save a dictionary into a pickle file.
-# favorite_color = { "lion": "yellow", "kitty": "red" }
-# pickle.dump( favorite_color, open( "save.p", "wb" ) )
