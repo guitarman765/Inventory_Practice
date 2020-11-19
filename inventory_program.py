@@ -1,6 +1,8 @@
 # Inventory Tracker.
+import sqlite3
 
-# Database of locations will disappear after each program run but will create database later.
+conn = sqlite3.connect('Database/inventory.db')
+
 global inventory_dict
 inventory_dict = {}
 
