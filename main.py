@@ -12,7 +12,6 @@
 
 # The inventory stored as a dictionary.
 inventory_dict = {}
-inventory_dict.update({'item3': 3})
 
 
 def user_choice():
@@ -49,8 +48,15 @@ def delete_item():
     return print("Delete Item")
 
 
+# FIX ME
 def add_item():
-    return print("Add Item")
+    add_item_num = input(print("Enter Item Number To Add To Inventory: "))
+    add_item_location = input(print("Enter Item Location Of Item Added To Inventory: "))
+    verify_input = input(print("Are You Sure You Want To Add Item:", add_item_num, "To Location:", add_item_location))
+    if verify_input == "Y" or "y":
+        inventory_dict.update({add_item_num: add_item_location})
+    else:
+        add_item()
 
 
 user_choice()
