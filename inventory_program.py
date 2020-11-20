@@ -1,10 +1,13 @@
 # Inventory Tracker.
-import sqlite3
+import pickle
 
-conn = sqlite3.connect('Database/inventory.db')
+inventory_dict = {"Matt": 29,
+                  "Mandy": 30}
 
-global inventory_dict
-inventory_dict = {}
+filename = "inventory_dict.txt"
+file = open(filename, 'wb')
+pickle.dump(inventory_dict, file)
+
 
 def user_choice():
     print("1: Find Location Of Item In Inventory")
@@ -44,7 +47,7 @@ def delete_item():
 def add_item():
     add_item_num = input("Enter Item Number To Add To Inventory: ")
     add_item_location = input("Enter Item Location Of Item Added To Inventory: ")
-    verify_input = input("Are You Sure You Want To Add Item: {} To Location: {}. Y/N: ".format(add_item_num, add_item_location))
+    verify_input = input("Are You Sure You Want To Add Item: {} To Location: {} Y/N:".format(add_item_num, add_item_location))
     if verify_input == "Y" or "y":
         inventory_dict.update({add_item_num: add_item_location})
     else:
@@ -52,3 +55,5 @@ def add_item():
 
 
 user_choice()
+
+
