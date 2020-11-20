@@ -1,20 +1,4 @@
 # Inventory Tracker.
-import pickle
-global filename
-global inventory_dict
-global file
-
-
-def save_dict():
-    filename = "inventory_dict.txt"
-    file = open(filename, 'wb')
-    pickle.dump(inventory_dict, file)
-
-
-def open_dict():
-    file = open(filename, 'rb')
-    inventory_dict = pickle.load(file)
-
 
 
 def user_choice():
@@ -59,13 +43,11 @@ def add_item():
         "Are You Sure You Want To Add Item: {} To Location: {} Y/N:".format(add_item_num, add_item_location))
     if verify_input == "Y" or "y":
         inventory_dict.update({add_item_num: add_item_location})
-        open_dict()
-        save_dict()
     else:
         add_item()
 
 
 user_choice()
-open_dict()
-print(inventory_dict)
+
+
 
