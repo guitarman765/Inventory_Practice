@@ -1,4 +1,20 @@
 # Inventory Tracker.
+import sqlite3
+
+
+def create_db():
+    # Create Database.
+    connection = sqlite3.connect('inventory_db')
+
+    # Define connection and cursor.
+    cursor = connection.cursor()
+
+    # Create inventory table command.
+    create_table = """CREATE TABLE IF NOT EXISTS
+    inventory (item_num INTEGER PRIMARY KEY, location TEXT)"""
+
+    # Create cursor and create inventory table.
+    cursor.execute(create_table)
 
 
 def user_choice():
@@ -47,6 +63,8 @@ def add_item():
         add_item()
 
 
+# Start of the program.
+create_db()
 user_choice()
 
 
