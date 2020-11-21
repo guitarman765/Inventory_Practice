@@ -42,12 +42,11 @@ def location_update():
 # ("UPDATE inventory SET location = (?) WHERE item_id = (?)", (?, ?))
 
 
-# FIX ME!
 def delete_item():
     del_item_num = input("Enter Item Number To Delete From Inventory: ")
     verify_del_input = input(f"Are You Sure You Want To Delete Item: {del_item_num} From The Inventory? Y/N: ")
     if verify_del_input == "Y" or "y":
-        cursor.execute("DELETE FROM inventory WHERE item_id = (?)", del_item_num)
+        cursor.execute("DELETE FROM inventory WHERE item_num = (?)", del_item_num)
         c_comm()
     else:
         pass
@@ -58,14 +57,13 @@ def view_inventory():
     results = cursor.fetchall()
     print(results)
 
+
 # FIX ME
 def add_item():
     add_item_num = input("Enter Item Number To Add To Inventory: ")
     add_item_location = input("Enter Item Location Of Item Added To Inventory: ")
     verify_input = input(f"Are You Sure You Want To Add Item: {add_item_num} To Location: {add_item_location} Y/N: ")
     if verify_input == "Y" or "y":
-        connection = sqlite3.connect('inventory_db')
-        cursor = connection.cursor()
         cursor.execute("INSERT INTO inventory VALUES (?,?)", (add_item_num, add_item_location))
         c_comm()
     else:
@@ -86,5 +84,3 @@ inventory (item_num INTEGER PRIMARY KEY, location TEXT)"""
 cursor.execute(create_table)
 
 user_choice()
-c_comm()
-
