@@ -1,4 +1,5 @@
 # Inventory Tracker.
+import sys
 import sqlite3
 
 
@@ -8,38 +9,48 @@ def c_comm():
 
 
 def user_choice():
-    print("1: Find Location Of Item In Inventory")
-    print("2: Change Item Location In Inventory")
-    print("3: Delete Item From Inventory")
-    print("4: Add Item To Inventory")
-    print("5: View Inventory")
+    user_input = 0
+    while user_input != 'N':
+        print("1: Find Location Of Item In Inventory")
+        print("2: Change Item Location In Inventory")
+        print("3: Delete Item From Inventory")
+        print("4: Add Item To Inventory")
+        print("5: View Inventory")
 
-    # Get user input.
-    user_input = int(input("Type Choice: "))
+        user_input = input("Type Choice: ")
+        choose_string = "Choose A Number To Continue Or N To Exit: "
+        if str(user_input).capitalize() == 'N':
+            sys.exit()
 
-    # User input determines what happens.
-    if user_input == 1:
-        return find_location()
-    if user_input == 2:
-        return location_update()
-    if user_input == 3:
-        return delete_item()
-    if user_input == 4:
-        return add_item()
-    if user_input == 5:
-        return view_inventory()
-    else:
-        return print("Not a choice, please try again.")
+        if int(user_input) == 1:
+            find_location()
+            print(choose_string)
+
+        if int(user_input) == 2:
+            location_update()
+            print(choose_string)
+
+        if int(user_input) == 3:
+            delete_item()
+            print(choose_string)
+
+        if int(user_input) == 4:
+            add_item()
+            print(choose_string)
+
+        if int(user_input) == 5:
+            view_inventory()
+            print(choose_string)
+        else:
+            pass
 
 
 def find_location():
-    return print("Find Location")
+    return print("FIX ME")
 
 
-# FIX ME!
 def location_update():
-    pass
-# ("UPDATE inventory SET location = (?) WHERE item_id = (?)", (?, ?))
+    return print("FIX ME")
 
 
 def delete_item():
@@ -58,7 +69,6 @@ def view_inventory():
     print(results)
 
 
-# FIX ME
 def add_item():
     add_item_num = input("Enter Item Number To Add To Inventory: ")
     add_item_location = input("Enter Item Location Of Item Added To Inventory: ")
@@ -71,7 +81,6 @@ def add_item():
 
 
 connection = sqlite3.connect('inventory_db')
-
 
 # Define connection and cursor.
 cursor = connection.cursor()
