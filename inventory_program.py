@@ -4,12 +4,15 @@ import sqlite3
 
 
 def c_comm():
+    """Commits an sqlite3 command and then closes the database."""
     connection.commit()
     connection.close()
 
 
 def user_choice():
+    """Choices for the user to do tasks with the sqlite3 database"""
     user_input = 0
+    # Creates a while loop so that the user doesnt have to keep clicking on the program to run it.
     while user_input != 'N':
         print("1: Find Location Of Item In Inventory")
         print("2: Change Item Location In Inventory")
@@ -17,27 +20,37 @@ def user_choice():
         print("4: Add Item To Inventory")
         print("5: View Inventory")
 
+        # The input that determines what the user wants to do from the print list above.
         user_input = input("Type Choice: ")
+
+        # The text printed after each command.
         choose_string = "Choose A Number To Continue Or N To Exit: "
+
+        # Stops the program if an n or N is encountered.
         if str(user_input).capitalize() == 'N':
             sys.exit()
 
+        # Moves onto the find a location in the database function.
         if int(user_input) == 1:
             find_location()
             print(choose_string)
 
+        # Moves onto location updating in the database function.
         if int(user_input) == 2:
             location_update()
             print(choose_string)
 
+        # Moves onto the delete an item in the database function.
         if int(user_input) == 3:
             delete_item()
             print(choose_string)
 
+        # Moves onto the add an item in the database function.
         if int(user_input) == 4:
             add_item()
             print(choose_string)
 
+        # Moves onto the view database function.
         if int(user_input) == 5:
             view_inventory()
             print(choose_string)
@@ -64,6 +77,7 @@ def delete_item():
 
 
 def view_inventory():
+    """Selects and returns everything from the sqlite3 database."""
     cursor.execute("SELECT * FROM inventory")
     results = cursor.fetchall()
     print(results)
